@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>	
+	<!-- HERENCIA Y ABSTRACT(SI LO QUIERES SOLO COMO PLANTILLA COSA QUE SOLO LO USARAS)-->
+	<bean id="trianguloHijo" class="com.spring.demo.Triangulo" parent="trianguloPadre">
+		<property name="puntoA" ref="puntoA"/>		
+	</bean>
+	<bean id="trianguloPadre" class="com.spring.demo.Triangulo">
+		<property name="puntoB" ref="puntoB"/>
+		<property name="puntoC" ref="puntoC"/>		
+	</bean>
+	<bean id="cuadradoHijo" class="com.spring.demo.Cuadrado" parent="cuadradoPadre" >
+		<property name="puntos">
+			<list merge="true">
+				<ref bean="puntoA"/>
+				<ref bean="puntoB"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="cuadradoPadre" class="com.spring.demo.Cuadrado" abstract="true">
+		<property name="puntos">
+			<list>
+				<ref bean="puntoC"/>
+				<ref bean="puntoD"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- CONSTRUCTORES(USA SIEMPRE UNO, EL POR DEFECTO SI NO TIENE UNO) E INNER BEANS -->
+	<bean id="triangulo" class="com.spring.demo.Triangulo" >
+		<property name="puntoA">
+			<bean class="com.spring.demo.Punto">
+				<constructor-arg index="0" value="5" />
+				<constructor-arg index="1" value="0" />
+			</bean>
+		</property>			
+		<property name="puntoB">
+			<bean class="com.spring.demo.Punto">
+				<constructor-arg index="0" value="-5" />
+				<constructor-arg index="1" value="0" />
+			</bean>
+		</property>			
+		<property name="puntoC">			
+			<bean class="com.spring.demo.Punto">
+				<property name="x" value="0" />
+				<property name="y" value="-5" />
+			</bean>
+		</property>			
+	</bean>
+	<!-- AUTOWIRE Y SCOPES(SINGLETON,PROTOTYPE) -->
+	<bean id="triangulo2" class="com.spring.demo.Triangulo" autowire="byName">
+		<!-- hay autowire byName,byType,Constructor, el primero es mejor -->
+		<!-- scope="singleton" por defecto, siempre devuelve la misma instancia -->
+		<!-- scope="prototype" devuelve diferentes instancias -->
+		<!-- hay scopes para web request,session,global session -->
+	</bean>
+	<!-- CONTRUSTORES -->
+	<bean id="puntoA" class="com.spring.demo.Punto">
+		<constructor-arg index="0" value="10"/>
+		<constructor-arg index="1" value="0"/>
+	</bean>
+	<bean id="puntoB" class="com.spring.demo.Punto">
+		<constructor-arg index="0" value="-10"/>
+		<constructor-arg index="1" value="0"/>
+	</bean>
+	<bean id="puntoC" class="com.spring.demo.Punto">
+		<constructor-arg index="0" value="0"/>
+		<constructor-arg index="1" value="10"/>
+	</bean>
+	
+	<bean id="puntoD" class="com.spring.demo.Punto">
+		<constructor-arg index="0" value="10"/>
+		<constructor-arg index="1" value="10"/>
+	</bean>
+	<!-- LISTAS -->
+	<bean id="cuadrado" class="com.spring.demo.Cuadrado">
+		<property name="puntos">
+			<list>
+				<ref bean="puntoA"/>
+				<ref bean="puntoB"/>
+				<ref bean="puntoC"/>
+				<ref bean="puntoD"/>
+			</list>
+		</property>
+	</bean>
+	
+
+	
+</beans>
