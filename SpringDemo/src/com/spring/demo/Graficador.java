@@ -26,8 +26,7 @@ public class Graficador {
 		System.out.println("Imprimiendo puntos de cuadrado");
 		Cuadrado cuadrado=(Cuadrado)contexto.getBean("cuadradoHijo");
 		cuadrado.dibujar();
-		
-		System.out.println("hola SpringDemo");
+
 	}
 
 }
