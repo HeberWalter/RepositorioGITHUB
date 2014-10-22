@@ -18,8 +18,6 @@ public class Graficador {
 		Cuadrado cuadrado=(Cuadrado)contexto.getBean("cuadrado");
 		cuadrado.dibujar();
 		
-		System.out.println("hola gente como estan!!!");
-		
 	}
 
 }
