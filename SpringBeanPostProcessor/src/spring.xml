@@ -38,4 +38,6 @@
 		<constructor-arg index="1" value="10"/>
 	</bean>
 	
+	<bean class="com.spring.demo.DisplayNameBeanPostProcessor" />
+	
 </beans>

@@ -8,14 +8,14 @@ public class DisplayNameBeanPostProcessor implements BeanPostProcessor {
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName)
 			throws BeansException {
-		System.out.println("Objeto inicializado");
+		System.out.println("En metodo despues de inicializacion: "+beanName);
 		return bean;
 	}
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName)
 			throws BeansException {
-		System.out.println("Objeto eliminado");
+		System.out.println("En metodo antes de inicializacion: "+beanName);
 		return bean;
 	}
 
