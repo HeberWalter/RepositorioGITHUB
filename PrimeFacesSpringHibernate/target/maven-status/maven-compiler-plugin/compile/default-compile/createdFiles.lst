@@ -1,0 +1,4 @@
+com\primefaces\tutorial\service\CustomerService.class
+com\primefaces\tutorial\DAO\CustomerDAO.class
+com\primefaces\tutorial\model\Customer.class
+com\primefaces\tutorial\managedController\CustomerManagedBean.class

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>	
+	
+	<!-- Informa de creacion y eliminacion usando interfaces -->
+	<bean id="triangulo" class="com.spring.demo.Triangulo" autowire="byName">
+	</bean>
+	
+	<!-- Informa de creacion y eliminacion usando metodos personalizados -->
+	<bean id="cuadrado" class="com.spring.demo.Cuadrado">
+		<property name="puntos">
+			<list>
+				<ref bean="puntoA"/>
+				<ref bean="puntoB"/>
+				<ref bean="puntoC"/>
+				<ref bean="puntoD"/>
+			</list>
+		</property>
+	</bean>
+
+	
+	<!-- CONTRUSTORES -->
+	<bean id="puntoA" class="com.spring.demo.Punto">
+		<constructor-arg index="0" value="10"/>
+		<constructor-arg index="1" value="0"/>
+	</bean>
+	<bean id="puntoB" class="com.spring.demo.Punto">
+		<property name="x" value="-10"/>
+		<property name="y" value="0"/>
+	</bean>
+	<bean id="puntoC" class="com.spring.demo.Punto">
+		<property name="x" value="0"/>
+		<property name="y" value="10"/>
+	</bean>
+		<bean id="puntoD" class="com.spring.demo.Punto">
+		<property name="x" value="10"/>
+		<property name="y" value="10"/>
+	</bean>
+	
+</beans>
