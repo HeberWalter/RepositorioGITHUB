@@ -9,7 +9,7 @@
         <spring.version>3.2.5.RELEASE</spring.version>
     </properties>
   <build>
-    <sourceDirectory>src</sourceDirectory>
+   <!--  <sourceDirectory>src</sourceDirectory> -->
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
