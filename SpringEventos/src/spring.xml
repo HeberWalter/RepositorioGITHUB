@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<bean id="triangulo" class="com.spring.demo.Triangulo" autowire="byName">
+	</bean>
+	
+	<bean id="cuadrado" class="com.spring.demo.Cuadrado">
+		<property name="puntos">
+			<list>
+				<ref bean="puntoA"/>
+				<ref bean="puntoB"/>
+				<ref bean="puntoC"/>
+				<ref bean="puntoD"/>
+			</list>
+		</property>
+	</bean>
+
+	
+	<!-- CONTRUSTORES Y PROPERTIES -->
+	<bean id="puntoA" class="com.spring.demo.Punto">
+		<constructor-arg index="0" value="10"/>
+		<constructor-arg index="1" value="0"/>
+	</bean>
+	<bean id="puntoB" class="com.spring.demo.Punto">
+		<property name="x" value="-10"/>
+		<property name="y" value="0"/>
+	</bean>
+	<bean id="puntoC" class="com.spring.demo.Punto">
+		<property name="x" value="0"/>
+		<property name="y" value="10"/>
+	</bean>
+		<bean id="puntoD" class="com.spring.demo.Punto">
+		<property name="x" value="10"/>
+		<property name="y" value="10"/>
+	</bean>
+	
+	<!-- <context:annotation-config /> -->
+	<context:component-scan base-package="com.spring.demo" />
+	
+</beans>
