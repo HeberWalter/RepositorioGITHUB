@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<head>
+	<title>APRENDIENDO JAVA SCRIPT</title>
+</head>
+<body>
+
+	<!-- necesario para el ejemplo de eventos 
+	<button id="miBoton"> Click aqui</button>-->
+	
+	<script type="text/javascript">
+	/*
+		//CONDICIONALES
+	
+		//ejemplo 1
+		var edad = 18;
+		if (edad>18)
+			alert("Eres mayor de edad: "+edad);
+		else if (edad<18){
+			alert("Eres menor de edad: "+edad);
+		}else{
+			alert("Tienes 18 años");
+		}
+		
+		//ejemplo 2
+		var bool =true;
+		var saludo = (bool? 'HOLA HOMBRE':'NADA NADA');
+		alert(saludo)
+		
+		//ejemplo 3
+		var variable=1
+		switch (variable){
+			case 0:
+				alert('Desactivado');
+				break;
+			case 1:
+				alert('Activado');
+				break;
+			default:
+				alert('Resultado desconocido');
+				break;
+		}	
+		
+		//funciones
+		//Ejemplo 1
+		function factorial(num){
+			if (num==0){
+				return 1;
+			}else{
+				return num*factorial(num-1);
+			}				
+		}
+	
+		var num = 5
+		alert('el factorial de '+num+ ' es '+factorial(num));
+		
+		//Ejemplo 2
+		var factorial = function(num){
+			if (num==0){
+				return 1;
+			}else{
+				return num*factorial(num-1);
+			}	
+		}
+		var num = 5
+		alert('el factorial de '+num+ ' es '+factorial(num)+' jeje :D');
+	
+		//Eventos
+		
+		//Ejemplo 1
+			window.addEventListener("load", function(){
+				alert('La pagina se ha cargado');
+			})			
+			var boton = document.getElementById("miBoton");
+			window.addEventListener("keydown",tecla_presionada);
+			boton.addEventListener("click",boton_click);
+			function boton_click(evento){
+				alert('Tipo de evento: '+evento.type);
+				alert('Cordenadas: '+ evento.screenX +','+evento.screenY);
+				//para que el evento funcione una vez, veo que las variables son globales
+				//boton.removeEventListener("click", boton_click);
+			}
+			function tecla_presionada(evento){
+				alert(evento.keyCode);
+			}	
+			
+			
+			//Repetitivas
+			
+			//Ejemplo 1
+			//si quieres declaras variable var i;
+			var i;
+			for(i=0;i<3;i++){
+				alert(i);
+			}
+			
+			//Ejemplo 2
+			var j=0
+			while (j<3){
+				alert(j);
+				j++;
+			}
+			//Ejemplo 3
+			var k=0
+			do{
+				alert(k);
+				k++;
+			}while(k<3);
+			
+			//Ejemplo 4 
+			var arreglo=[1,2,3,4,5]
+			for (i in arreglo){
+				alert('posicioin: '+i+',valor: '+arreglo[i]);
+			}
+			
+			//Arreglos
+			//Ejemplo 1
+			var arreglo = new Array();
+			arreglo.push(3);
+			arreglo.push('Hola mundo');
+			arreglo.push('Hebe Walter');
+			
+			//para ver el log, el chrome click derecho/inspeccionar elemento/consola
+			for (i in arreglo){
+				console.log(arreglo[i]);
+			}
+			//Ejemplo 2
+			var arreglo=[[1,2,3],['a','b','c']];
+			for (i=0;i<arreglo.length;i++){
+				for (j=0;j<arreglo[0].length;j++){
+					console.log(arreglo[i][j]);
+				}
+			}
+			//Ejemplo 3
+			var cadena = 'ab-cd*ef-gh';
+			var arreglo = cadena.split('-');
+			for (i in arreglo){
+				console.log("posicion: "+i+",valor: "+arreglo[i]);
+			}*/
+			//POO (se puede hacer herencia, polimorfismo pero es complicado)
+			var gato1 = new Gato("Bola de pelos");
+			var gato2 = new Gato("Minino");
+			
+			function Gato(nombre){
+				this.nombre=nombre;
+				this.maullar = function(){
+					alert("El gato " + this.nombre +" esta maullando" );
+				}
+			}
+			gato1.maullar();
+			gato2.maullar();
+	</script>
+	
+</body>
+
+</html>

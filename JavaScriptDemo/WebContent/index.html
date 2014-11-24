@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<head>
+	<title>APRENDIENDO JAVA SCRIPT CON JQUERY</title>
+	<!-- id se accede con #id, class con .class,demas elementos internos = div li p  -->
+	<!-- falta video 11,12,14,18-->
+	
+	<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+	<style>
+		.test
+		{
+			background-color:red;
+		}
+	</style>
+	<script type="text/javascript">
+		
+		//formas de declarar
+		//$(document).ready(function({ }) hasta jquery verion < 1.7
+		//$(document).on('ready',function(){}) a partir de jquery 1.7		
+		//$(function(){ })  -> forma avanzada
+		/*
+		//Ejemplo 1 - necesita de las etiquetas en el body
+		 $(document).on('ready',function(){
+			$('#prueba').text('Hola mundo');
+			$('.prueba').html('<strong>Estoy usando JQuery</strong>');
+		});	 
+			
+		//Ejemplo 2 - necesita de las etiquetas en el body
+		$(document).on("ready",function(){
+			//$("div.miDiv").css({"background-color":"#000",});
+			//$("div.miDiv article p").text("Hola selectores del diablo");
+			$("#parrafo1,#parrafo2,span").text("Todos somos iguales");
+		})
+		
+		//Ejemplo 3 - necesita de las etiquetas en el body
+		$(document).on("ready",function(){
+			var seleccion = $(".ejemplo");//busca clases=ejemplo%
+			
+			if(seleccion.length){
+				console.log("Existen: "+seleccion.length);
+			}else{
+				console.log("No existe el elemento seleccionado");
+			}
+			//Ejecutar uno a la vez
+			//seleccion.not(".xxy").text("Este elemento no tiene la xxy");//ve si class=%xxy
+			//seleccion.has("p").text("Este elemento tiene la etiqueta <p>");//busca la etiqueta
+			$("li").first().html("<strong>Soy el primer elemento</strong>");//insertas <li>texto</li>
+		});
+		
+		//Se puede agregar y obtener atributos video 11, por ejemplo a div, le puedes asignar class="clase"
+		//asignando estilos css video 12
+		//al hacer click un link, cambias de color toda la linea video 13 (hecho, ver sgte:)
+		//Ejemplo 4 -requiere body y style test (ver cabecera)
+		$(document).on("ready", function(){
+			$(document).on("click",function(){
+				//$("#test").addClass("test")
+				//$("#test").removeClass("test")
+				$("#test").toggleClass("test");//hace la chamba de los anteriores
+				if($("#test").hasClass("test")){
+					$("#test").text("Hey soy rojo");
+				}else{
+					$("#test").text("Ya no estoy rojo");	
+				}					
+			})
+		})
+		//sacando dimensiones de un componentel html, video 14
+		//Ejemplo 5
+		$(document).on("ready",function(){
+			//$("#prueba").attr("class","claseCambiada");
+			//$("#prueba").removeAttr("class");
+			$("#prueba").attr("class",function(){//poniendo mi clase personal
+				var cadena="hola_mundo";
+				return cadena;
+			});
+			var clase = $("#prueba").attr("class");
+			alert(clase);
+			//controlando cuando va salir de la web
+			$("a").on("click",function(e){
+				e.preventDefault();
+				var link = $(this).attr("href");
+				alert("Esta saliendo de nuestro sitio");
+				location.href=link;
+			})
+		})
+		//ordenando <li> con jquery, video 16
+		//Ejemplo 6, para ver el elemento que sigue en el arbolito de tags de HTML
+		$(document).on("ready",function(){
+			$("#test").parent().text();
+			console.log($("#primero").next().text());//ve el que sigue
+			console.log("---------------------");
+			console.log($("#test").parent().attr("id"));//imprime a su papi
+			console.log("---------------------");
+			console.log($("#padre").children().attr("id"));//imprime a su hijo
+			console.log("---------------------");
+			console.log($("#primero").siblings());//imprime hermanos (deberia en listar los <li> con su contenido, pero sale otra cosa)
+			console.log("---------------------");
+			$("ul li").each(function(index,elemento){
+				console.log("El elemento de la posicion "+index+" contiene el texto: "+$(elemento).text());
+			});
+		});		
+		//$.inArray o trim() .. utilitarios de JQuery, video 18
+		//Ejemplo 7 - guardando data - necesita tags en body
+		$(document).on("ready",function(){
+			$("ul li").each(function(index,elemento){
+				$.data(elemento,'posicion',index);//graba el index de elemento en posicion
+			});
+			$("ul li").each(function(index,elemento){
+				console.log($.data(elemento,'posicion'));//lee posicion del elemento (lo que guarda)
+			});
+		});	*/
+		//info de navegador, no funciona, parece que ha cambiado la forma de obtenerlo, video 20
+		//console.log($.browser);
+		//alert("Version: "+$.browser.version+" --Navegador: "+$.browser.msie);
+		var caja1bg,caja2bg,caja3bg,v=0;
+		$(document).on("ready", function(){
+			//ejemplo a
+			//al hacer click en link, muestra id de <a>
+			$("a").on("click",function(e){
+				e.preventDefault();//le dices:olvidate de abrir el link, haz lo que sigue
+				console.log($(this).attr("id"));
+			}); 
+			//ejemplo b
+			$("div.prueba").css({"background-color":"#000",});
+			$("#caja1").mouseover(function(){
+				caja1bg=$(this).css("background");//salvo el color que tiene
+				$(this).css("background","red");
+			});
+			$("#caja1").mouseout(function(){
+				$(this).css("background",caja1bg);//recupero su color al quitar puntero
+			});
+			//ejemplo c equivalente a ejemplo b
+			$("div.prueba2").css({"background-color":"#0FF",});
+			$("#caja2").on("mouseover",function(){
+				caja2bg=$(this).css("background");//salvo el color que tiene
+				$(this).css("background","red");
+			});
+			$("#caja2").on("mouseout",function(){
+				$(this).css("background",caja2bg);//recupero su color al quitar puntero
+			});  
+			//ejemplo d equivalente a ejemplos anteriores 
+			//ventaja de on: agregar varios eventos de porraso
+			$("div.prueba3").css({"background-color":"#00F",});
+			$("#caja3").on({
+					"mouseover":function(){
+						v++;
+						caja3bg=$(this).css("background");//salvo el color que tiene
+						$(this).css("background","red");
+					},
+					"mouseout":function(){
+						$(this).css("background",caja3bg);//recupero su color al quitar puntero
+						if(v>=3){
+							$("#caja3").off("mouseover");//se desvincula
+						}
+					}
+			});
+			//Ejemplo e, metodo one para que evento se ejecute una sola vez
+			$("div.prueba4").css({"background-color":"#0AF",});
+			$("#caja4").one("mouseover",function(){
+				caja4bg=$(this).css("background");//salvo el color que tiene
+				$(this).css("background","red");
+			});
+			$("#caja4").one("mouseout",function(){
+				$(this).css("background",caja4bg);//recupero su color al quitar puntero
+			}); 
+		});
+		
+	</script>
+
+</head>
+<body>
+	
+	<!--Para ejemplo 1 
+	<div id="prueba"></div>
+	<div class="prueba"></div> -->
+	
+	<!-- Para ejemplo 2
+	<div class="miDiv">
+		<article>
+			<p id="parrafo1">JQuery</p>
+		</article>
+	</div>
+	<div>
+		<article class="miDiv">
+			<p id="parrafo2">Tutorial facilito</p>
+		</article>	
+	</div>
+	<span></span> -->
+	
+	<!-- Para ejemplo 3
+	<div class="ejemplo xxx">
+		<p>aaa</p>
+	</div>
+	<div class="ejemplo xxy">
+		<span></span>
+	</div>
+	
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	 -->
+	 <!-- Para ejemplo 4 
+	<div id="test" > Click on me	</div>
+	-->
+	<!-- Para ejemplo 5
+	<div id="prueba" class="pruebaClass"></div>
+	<a href="http://www.codigofacilito.com">Codigo facilito</a> -->
+	
+	<!-- Para ejemplo 6
+	<div>
+		<article id="padre">
+			<div id="test">Soy el hijo</div>
+		</article>
+	</div>
+	<ul>
+		<li id="primero">First</li>
+		<li>Second</li>
+		<li>Third</li>
+	</ul> -->
+	<!-- Para ejemplo 7
+	<ul>
+		<li>Uno</li>
+		<li>Dos</li>
+		<li>Tres</li>
+	</ul> -->
+	
+	<div>
+		<a id="linkUno" href="http://www.codigofacilito.com">Codigo facilito</a>
+		<br/>
+		<a id="linkDos" href="http://www.codigofacilito.com">Codigo facilito</a>
+		<br/>
+	</div>
+	
+	<div id="caja1" class="prueba">
+		<p>textooo</p>
+	</div>
+	<div id="caja2" class="prueba2">
+		<p>textooo2</p>
+	</div>
+	<div id="caja3" class="prueba3">
+		<p>textooo3</p>
+	</div>
+	<div id="caja4" class="prueba4">
+		<p>textooo4</p>
+	</div>
+</body>
+
+</html>
