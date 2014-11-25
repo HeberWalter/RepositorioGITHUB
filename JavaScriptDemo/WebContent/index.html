@@ -6,7 +6,7 @@
 <head>
 	<title>APRENDIENDO JAVA SCRIPT CON JQUERY</title>
 	<!-- id se accede con #id, class con .class,demas elementos internos = div li p  -->
-	<!-- falta video 11,12,14,18-->
+	<!-- falta video 11,12,14,18,24-28, despues creo que hare Ajax-->
 	
 	<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
 	<style>
@@ -110,11 +110,12 @@
 			$("ul li").each(function(index,elemento){
 				console.log($.data(elemento,'posicion'));//lee posicion del elemento (lo que guarda)
 			});
-		});	*/
-		//info de navegador, no funciona, parece que ha cambiado la forma de obtenerlo, video 20
+		});	
+		//***info de navegador, no funciona, parece que ha cambiado la forma de obtenerlo, video 20
 		//console.log($.browser);
 		//alert("Version: "+$.browser.version+" --Navegador: "+$.browser.msie);
-		var caja1bg,caja2bg,caja3bg,v=0;
+		//EJEMPLO 8 - EVENTOS FUCK!
+		var caja1bg,caja2bg,caja3bg,caja4bg,v=0;
 		$(document).on("ready", function(){
 			//ejemplo a
 			//al hacer click en link, muestra id de <a>
@@ -165,6 +166,23 @@
 			$("#caja4").one("mouseout",function(){
 				$(this).css("background",caja4bg);//recupero su color al quitar puntero
 			}); 
+		});*/
+		//Ejemplo f, evento personalizado
+		$(document).on("ready",function(){
+			$("#miInput").on("cambio",function(ev,id){
+				if(this.checked){
+					console.log(id);
+					$("#miInput").removeAttr("checked");
+					$(".cambiar").text("Encender");
+				}else{
+					$("#miInput").attr("checked","checked");
+					$(".cambiar").text("Apagado");
+				}
+			});			
+			//si algun boton es clickeado, lanza evento personalizado
+			$(".cambiar").on("click",function(){
+				$("#miInput").trigger("cambio",[$(this).attr("id")]);
+			});
 		});
 		
 	</script>
@@ -229,6 +247,7 @@
 		<li>Tres</li>
 	</ul> -->
 	
+	<!-- Para ejemplo 8
 	<div>
 		<a id="linkUno" href="http://www.codigofacilito.com">Codigo facilito</a>
 		<br/>
@@ -237,17 +256,22 @@
 	</div>
 	
 	<div id="caja1" class="prueba">
-		<p>textooo</p>
+		<p>textooo,cambia color infinidad de veces</p>
 	</div>
 	<div id="caja2" class="prueba2">
-		<p>textooo2</p>
+		<p>textooo2,cambia color infinidad de veces</p>
 	</div>
 	<div id="caja3" class="prueba3">
-		<p>textooo3</p>
+		<p>textooo3, que cambia 3 veces</p>
 	</div>
 	<div id="caja4" class="prueba4">
-		<p>textooo4</p>
-	</div>
+		<p>textooo4, que cambia solo 1 vez</p>
+	</div> -->
+	
+	<input type="checkbox" id="miInput" checked="checked" />
+	<button class="cambiar" id="boton1">Apagar</button>
+	<button class="cambiar" id="boton2">Apagar</button>
+		
 </body>
 
 </html>
